@@ -59,7 +59,22 @@ response = openai.ChatCompletion.create(
   messages=messages
 )
 traits = response['choices'][0]['message']['content'].strip() 
-print(f"{traits}")
+print(f"{traits}") 
+
+answer = input("Do you agree with the traits?\n>")
+
+if answer == "yes":
+    answer = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=messages
+  )
+elif answer == "no":
+  traits = input("What traits do you want?")
+  print(traits)
+else:  
+  print("You didn't choose yes or no.")
+  
+
 
 exit(0)
 
